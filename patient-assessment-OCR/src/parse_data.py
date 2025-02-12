@@ -4,10 +4,10 @@ import json
 def parse_extracted_text(text):
     """Parse extracted text into structured data."""
     data = {
-        "Patient Name": re.search(r"Patient Name:\s*(.*)", text).group(1).strip(),
-        "Date of Birth": re.search(r"Date of Birth:\s*(.*)", text).group(1).strip(),
-        "Assessment Date": re.search(r"Assessment Date:\s*(.*)", text).group(1).strip(),
-        "Diagnosis": re.search(r"Diagnosis:\s*(.*)", text).group(1).strip()
+        "Patient Name": re.search(r"Patient\s*Name:\s*(.*)", text, re.IGNORECASE).group(1).strip() if re.search(r"Patient\s*Name:\s*(.*)", text, re.IGNORECASE) else "Unknown",
+        "Date of Birth": re.search(r"Date\s*of\s*Birth:\s*(.*)", text, re.IGNORECASE).group(1).strip() if re.search(r"Date\s*of\s*Birth:\s*(.*)", text, re.IGNORECASE) else "Unknown",
+        "Assessment Date": re.search(r"Assessment\s*Date:\s*(.*)", text, re.IGNORECASE).group(1).strip() if re.search(r"Assessment\s*Date:\s*(.*)", text, re.IGNORECASE) else "Unknown",
+        "Diagnosis": re.search(r"Diagnosis:\s*(.*)", text, re.IGNORECASE).group(1).strip() if re.search(r"Diagnosis:\s*(.*)", text, re.IGNORECASE) else "Unknown"
     }
     return data
 
